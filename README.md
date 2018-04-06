@@ -1,28 +1,28 @@
 # Vue.title
 
-Title plugin for Vue.
+Title plugin for `Vue`.
 
 ## Setup
 
 ```
-npm install vue-title --save
+npm install vue-title-plugin --save
 ```
 
-You have two ways to setup `vue-title`:
+You have two ways to setup `vue-title-plugin`:
 
 #### CommonJS (Webpack/Browserify)
 
 - ES6
 
 ```js
-import ajax from 'vue-title'
+import ajax from 'vue-title-plugin'
 Vue.use(ajax)
 ```
 
 - ES5
 
 ```js
-var ajax = require('vue-title')
+var ajax = require('vue-title-plugin')
 Vue.use(ajax)
 ```
 

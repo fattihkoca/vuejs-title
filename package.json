@@ -1,5 +1,5 @@
 {
-    "name": "vue-title",
+    "name": "vue-title-plugin",
     "version": "0.0.1",
     "description": "Title plugin for Vue",
     "main": "src/Vue.title.js",
