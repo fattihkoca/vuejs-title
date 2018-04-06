@@ -1,0 +1,37 @@
+{
+    "name": "vue-title",
+    "version": "0.0.1",
+    "description": "Title plugin for Vue",
+    "main": "src/Vue.title.js",
+    "directories": {
+        "example": "examples"
+    },
+    "scripts": {
+        "test": "Vue.title()"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fattihkoca/vue.title.git"
+    },
+    "keywords": [
+        "vue",
+        "ajax",
+        "file-upload",
+        "delete",
+        "get",
+        "head",
+        "jsonp",
+        "patch",
+        "post",
+        "put"
+    ],
+    "dependencies": {
+        "vue": ">=2"
+    },
+    "author": "Fatih Koca",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/fattihkoca/vue.title/issues"
+    },
+    "homepage": "https://github.com/fattihkoca/vue.title#readme"
+}
