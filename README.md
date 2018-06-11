@@ -1,4 +1,4 @@
-# Vue.title
+# vuejs-title
 
 Title plugin for `Vue`.
 
@@ -8,7 +8,7 @@ Title plugin for `Vue`.
 npm install vuejs-title --save
 ```
 
-You have two ways to setup `vuejs-plugin`:
+You have two ways to setup `vuejs-title`:
 
 #### CommonJS (Webpack/Browserify)
 
