@@ -21,7 +21,7 @@ const VueTitle = {
             return {
                 top: rect.top + scrollTop,
                 left: rect.left + scrollLeft
-            }
+            };
         };
 
         const setBlur = function () {
@@ -132,17 +132,15 @@ const VueTitle = {
                     setPosition(el, item, itemArrow);
                 };
 
-                el.onmouseout = function () {
-                    setBlur();
-                };
-
-                el.onclick = function () {
-                    setBlur();
-                };
-
                 document.body.onscroll = function () {
                     setBlur();
                 };
+
+                el.addEventListener("mouseout", setBlur);
+                el.addEventListener("click", setBlur);
+            },
+            unbind: function() {
+                setBlur();
             }
         });
     }
