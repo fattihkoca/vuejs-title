@@ -5,7 +5,7 @@
  */
 
 import Vue from 'vue'
-import title from "vue-title";
+import title from "vuejs-title";
 
 window.Vue = Vue;
 Vue.use(title);
