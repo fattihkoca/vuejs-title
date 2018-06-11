@@ -1,13 +1,13 @@
 /**
  * VueTitle
  */
-const VueTitle = {
-    install(Vue, options) {
+var VueTitle = {
+    install: function(Vue, options) {
         Vue.mixin({
             /**
              * mounted: Called after the instance has been mounted
              */
-            mounted() {
+            mounted: function() {
                 if (typeof options == 'object' && typeof options.mounted == 'function') {
                     return options.mounted();
                 }
@@ -24,7 +24,7 @@ const VueTitle = {
             };
         };
 
-        const setBlur = function () {
+        var setBlur = function () {
                 var item = document.body.querySelector('.' + cssClass);
                 if (item) {
                     item.style.opacity = 0;
@@ -146,4 +146,4 @@ const VueTitle = {
     }
 };
 
-export default VueTitle;
+module.exports = VueTitle;
