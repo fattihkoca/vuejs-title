@@ -77,6 +77,44 @@ var VueTitle = {
                 }
 
                 item.style.opacity = 1;
+            },
+            takeOver = function(el, binding) {
+                el.onmouseover = function () {
+                    var value = binding.value;
+
+                    setBlur();
+
+                    if (el.hasAttribute('title')) {
+                        if (!value) {
+                            value = binding.value = el.getAttribute('title');
+                        }
+
+                        el.removeAttribute('title');
+                    }
+
+                    if(!value) {
+                        return;
+                    }
+
+                    var item = document.createElement("div"),
+                        itemContents = document.createElement("div"),
+                        itemArrow = document.createElement("div");
+
+                    item.style.position = itemArrow.style.position = 'fixed';
+                    item.style.opacity = 0;
+                    item.classList.add(cssClass);
+                    item.setAttribute('position', 'bottom');
+                    itemContents.classList.add(cssClass + '-contents');
+                    itemArrow.classList.add(cssClass + '-arrow');
+                    itemContents.innerHTML = value;
+                    item.style.zIndex = itemArrow.style.zIndex = 2147483647;
+
+                    item.appendChild(itemContents);
+                    item.appendChild(itemArrow);
+                    document.body.appendChild(item);
+
+                    setPosition(el, item, itemArrow);
+                };
             };
 
         var cssClass = 'title',
@@ -99,45 +137,16 @@ var VueTitle = {
 
         Vue.directive('title', {
             bind: function (el, binding) {
-                el.onmouseover = function () {
-                    var value = binding.value;
-
-                    setBlur();
-
-                    if (el.hasAttribute('title')) {
-                        if (!value) {
-                            value = binding.value = el.getAttribute('title');
-                        }
-
-                        el.removeAttribute('title');
-                    }
-
-                    var item = document.createElement("div"),
-                        itemContents = document.createElement("div"),
-                        itemArrow = document.createElement("div");
-
-                    item.style.position = itemArrow.style.position = 'fixed';
-                    item.style.opacity = 0;
-                    item.classList.add(cssClass);
-                    item.setAttribute('position', 'bottom');
-                    itemContents.classList.add(cssClass + '-contents');
-                    itemArrow.classList.add(cssClass + '-arrow');
-                    itemContents.innerHTML = value;
-                    item.style.zIndex = itemArrow.style.zIndex = 2147483647;
-
-                    item.appendChild(itemContents);
-                    item.appendChild(itemArrow);
-                    document.body.appendChild(item);
-
-                    setPosition(el, item, itemArrow);
-                };
+                takeOver(el, binding);
+                el.addEventListener("mouseout", setBlur);
+                el.addEventListener("click", setBlur);
 
                 document.body.onscroll = function () {
                     setBlur();
                 };
-
-                el.addEventListener("mouseout", setBlur);
-                el.addEventListener("click", setBlur);
+            },
+            update: function(el, binding) {
+                takeOver(el, binding);
             },
             unbind: function() {
                 setBlur();

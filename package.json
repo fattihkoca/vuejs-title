@@ -1,6 +1,6 @@
 {
     "name": "vuejs-title",
-    "version": "0.0.5",
+    "version": "0.0.7",
     "description": "Title plugin for Vue",
     "main": "src/vuejs-title.js",
     "directories": {
@@ -15,15 +15,9 @@
     },
     "keywords": [
         "vue",
-        "ajax",
-        "file-upload",
-        "delete",
-        "get",
-        "head",
-        "jsonp",
-        "patch",
-        "post",
-        "put"
+        "title",
+        "bubble",
+        "hover title"
     ],
     "dependencies": {
         "vue": ">=2"
@@ -33,5 +27,5 @@
     "bugs": {
         "url": "https://github.com/fattihkoca/vuejs-title/issues"
     },
-    "homepage": "https://github.com/fattihkoca/vue-js-title#readme"
+    "homepage": "https://github.com/fattihkoca/vuejs-title#readme"
 }
