@@ -1,6 +1,6 @@
 {
     "name": "vuejs-title",
-    "version": "0.0.7",
+    "version": "0.0.7.1",
     "description": "Title plugin for Vue",
     "main": "src/vuejs-title.js",
     "directories": {

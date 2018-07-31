@@ -85,7 +85,7 @@ var VueTitle = {
                     setBlur();
 
                     if (el.hasAttribute('title')) {
-                        if (!value) {
+                        if (!value || value != el.getAttribute('title')) {
                             value = binding.value = el.getAttribute('title');
                         }
 
@@ -144,9 +144,6 @@ var VueTitle = {
                 document.body.onscroll = function () {
                     setBlur();
                 };
-            },
-            update: function(el, binding) {
-                takeOver(el, binding);
             },
             unbind: function() {
                 setBlur();
