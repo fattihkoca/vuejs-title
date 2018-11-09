@@ -1,31 +1,55 @@
 {
-    "name": "vuejs-title",
-    "version": "0.0.8",
-    "description": "Title plugin for Vue",
-    "main": "src/vuejs-title.js",
-    "directories": {
-        "example": "examples"
-    },
-    "scripts": {
-        "test": "Vue.title()"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/fattihkoca/vuejs-title.git"
-    },
-    "keywords": [
-        "vue",
-        "title",
-        "bubble",
-        "hover title"
-    ],
-    "dependencies": {
-        "vue": ">=2"
-    },
-    "author": "Fatih Koca",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/fattihkoca/vuejs-title/issues"
-    },
-    "homepage": "https://github.com/fattihkoca/vuejs-title#readme"
+  "name": "vuejs-title",
+  "version": "0.0.9",
+  "description": "Title buble directive for Vue",
+  "keywords": [
+    "vue",
+    "title",
+    "bubble",
+    "hover title",
+    "title directive"
+  ],
+  "main": "dist/vuejs-title.umd.js",
+  "module": "dist/vuejs-title.esm.js",
+  "unpkg": "dist/vuejs-title.min.js",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "author": "Fatih Koca <fattih@fattih.com>",
+  "license": "MIT",
+  "directories": {
+    "example": "test"
+  },
+  "scripts": {
+    "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
+    "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/vue-test.umd.js",
+    "build:es": "rollup --config build/rollup.config.js --format es --file dist/vue-test.esm.js",
+    "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/vue-test.min.js",
+    "lint": "jshint *.js",
+    "test": "mocha test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fattihkoca/vuejs-title.git"
+  },
+  "private": false,
+  "dependencies": {},
+  "devDependencies": {
+    "custom-event": "^1.0.1",
+    "jsdom": "^11.12.0",
+    "jsdom-global": "3.0.2",
+    "mocha": "^5.2.0",
+    "rollup": "^0.57.1",
+    "rollup-plugin-buble": "^0.19.4",
+    "rollup-plugin-vue": "^3.0.0",
+    "rollup-plugin-vue2": "^0.8.0",
+    "vue": "^2.5.17",
+    "vue-template-compiler": "^2.5.16",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "bugs": {
+    "url": "https://github.com/fattihkoca/vuejs-title/issues"
+  },
+  "homepage": "https://github.com/fattihkoca/vuejs-title#readme"
 }

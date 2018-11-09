@@ -1,21 +1,18 @@
 /**
  * VueTitle
  */
-var VueTitle = {
-    install: function(Vue, options) {
+const VueTitle = {
+    install: (Vue, options) => {
         Vue.mixin({
-            /**
-             * mounted: Called after the instance has been mounted
-             */
             mounted: function() {
-                if (typeof options == 'object' && typeof options.mounted == 'function') {
+                if (typeof options === "object" && typeof options.mounted === "function") {
                     return options.mounted();
                 }
             }
         });
 
         HTMLElement.prototype.offset = function () {
-            var rect = this.getBoundingClientRect(),
+            const rect = this.getBoundingClientRect(),
                 scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
                 scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             return {
@@ -24,24 +21,33 @@ var VueTitle = {
             };
         };
 
-        var setBlur = function () {
-                var item = document.body.querySelector('.' + cssClass);
-                if (item) {
-                    item.style.opacity = 0;
+        let conf = {
+            cssClass: "title",
+            blurDelay: 10,
+            minPositionGap: 20,
+            focusDelay: 10,
+        };
+
+        const utils = {
+            blur() {
+                let el = document.body.querySelector("." + conf.cssClass);
+                
+                if (el != null && el instanceof Element) {
+                    el.style.opacity = "0";
                 }
 
-                setTimeout(function () {
-                    if (item) {
-                        if (item.parentNode) {
-                            item.parentNode.removeChild(item);
+                setTimeout(() => {
+                    if (el) {
+                        if (el.parentNode) {
+                            el.parentNode.removeChild(el);
                         } else {
-                            item.remove();
+                            el.remove();
                         }
                     }
-                }, blurDelay);
+                }, conf.blurDelay);
             },
-            setPosition = function (el, item, itemArrow) {
-                var elOffset = el.offset(),
+            setPosition(el, item, itemArrow) {
+                let elOffset = el.offset(),
                     top = elOffset.top,
                     left = elOffset.left,
                     width = el.offsetWidth,
@@ -50,103 +56,107 @@ var VueTitle = {
                     winHeight = window.innerHeight,
                     docScrollTop = document.documentElement.scrollTop,
                     docScrollLeft = document.documentElement.scrollLeft,
-
                     arrowWidth = itemArrow.offsetWidth,
                     arrowHeight = itemArrow.offsetHeight,
                     itemWidth = item.offsetWidth,
                     itemHeight = item.offsetHeight,
                     itemLeft = left - docScrollLeft - ((itemWidth - width) / 2);
 
-                if (itemLeft < minPositionGap) {
-                    itemLeft = minPositionGap;
+                if (itemLeft < conf.minPositionGap) {
+                    itemLeft = conf.minPositionGap;
                 }
 
                 if (itemLeft + itemWidth > winWidth) {
-                    itemLeft = winWidth - itemWidth - minPositionGap;
+                    itemLeft = winWidth - itemWidth - conf.minPositionGap;
                 }
 
-                item.style.left = itemLeft + 'px';
-                itemArrow.style.left = (left - docScrollLeft + (width / 2) - (arrowWidth / 2)) + 'px';
-                item.style.top = top - docScrollTop + height + arrowHeight + 'px';
-                itemArrow.style.top = top - docScrollTop + height + 'px';
+                item.style.left = itemLeft + "px";
+                itemArrow.style.left = (left - docScrollLeft + (width / 2) - (arrowWidth / 2)) + "px";
+                item.style.top = top - docScrollTop + height + arrowHeight + "px";
+                itemArrow.style.top = top - docScrollTop + height + "px";
 
                 if (item.offset().top + itemHeight > docScrollTop + winHeight) {
-                    item.setAttribute('position', 'top');
-                    item.style.top = (top - docScrollTop - itemHeight - arrowHeight) + 'px';
-                    itemArrow.style.top = (item.offset().top - docScrollTop + itemHeight + 3) + 'px';
+                    item.setAttribute("position", "top");
+                    item.style.top = (top - docScrollTop - itemHeight - arrowHeight) + "px";
+                    itemArrow.style.top = (item.offset().top - docScrollTop + itemHeight + 3) + "px";
                 }
 
-                item.style.opacity = 1;
+                item.style.opacity = "1";
             },
-            takeOver = function(el, binding) {
-                el.onmouseover = function () {
-                    var value = binding.value;
+            create(el, value) {
+                let item = document.createElement("div"),
+                    itemContents = document.createElement("div"),
+                    itemArrow = document.createElement("div");
 
-                    setBlur();
+                item.style.position = itemArrow.style.position = "fixed";
+                item.style.opacity = "0";
+                item.classList.add(conf.cssClass);
+                item.setAttribute("position", "bottom");
+                itemContents.classList.add(conf.cssClass + "-contents");
+                itemArrow.classList.add(conf.cssClass + "-arrow");
+                itemContents.innerHTML = value;
+                item.style.zIndex = itemArrow.style.zIndex = "2147483647";
 
-                    if (el.hasAttribute('title')) {
-                        if (!value || value != el.getAttribute('title')) {
-                            value = binding.value = el.getAttribute('title');
-                        }
+                item.appendChild(itemContents);
+                item.appendChild(itemArrow);
+                document.body.appendChild(item);
 
-                        el.removeAttribute('title');
+                utils.setPosition(el, item, itemArrow);
+            },
+            catchValue(el, value) {
+                if (el.hasAttribute("title")) {
+                    if (!value || value !== el.getAttribute("title")) {
+                        value = el.getAttribute("title");
                     }
 
-                    if(!value) {
-                        return;
-                    }
+                    el.removeAttribute("title");
+                }
 
-                    var item = document.createElement("div"),
-                        itemContents = document.createElement("div"),
-                        itemArrow = document.createElement("div");
+                return value;
+            },
+            exec(el, binding) {
+                utils.blur();
+                binding.value = utils.catchValue(el, binding.value);
 
-                    item.style.position = itemArrow.style.position = 'fixed';
-                    item.style.opacity = 0;
-                    item.classList.add(cssClass);
-                    item.setAttribute('position', 'bottom');
-                    itemContents.classList.add(cssClass + '-contents');
-                    itemArrow.classList.add(cssClass + '-arrow');
-                    itemContents.innerHTML = value;
-                    item.style.zIndex = itemArrow.style.zIndex = 2147483647;
-
-                    item.appendChild(itemContents);
-                    item.appendChild(itemArrow);
-                    document.body.appendChild(item);
-
-                    setPosition(el, item, itemArrow);
-                };
-            };
-
-        var cssClass = 'title',
-            blurDelay = 10,
-            minPositionGap = 20;
-
-        if (typeof options == 'object') {
-            if (options.hasOwnProperty('cssClass')) {
-                cssClass = options.cssClass;
+                if(binding.value) {
+                    utils.create(el, binding.value);
+                }
+            },
+            addEvents(el) {
+                el.addEventListener("mouseover", utils.exec);
+                el.addEventListener("mouseout", utils.blur);
+                el.addEventListener("click", utils.blur);
+                document.body.addEventListener("scroll", utils.blur);
+            },
+            removeEvents(el) {
+                el.removeEventListener("mouseover", utils.exec);
+                el.removeEventListener("mouseout", utils.blur);
+                el.removeEventListener("click", utils.blur);
+                document.body.removeEventListener("scroll", utils.blur);
+            },
+        };
+        
+        if (typeof options === "object") {
+            if (options.hasOwnProperty("cssClass")) {
+                conf.cssClass = options.cssClass;
             }
 
-            if (options.hasOwnProperty('blurDelay')) {
-                blurDelay = options.blurDelay;
+            if (options.hasOwnProperty("blurDelay")) {
+                conf.blurDelay = options.blurDelay;
             }
 
-            if (options.hasOwnProperty('focusDelay')) {
-                focusDelay = options.focusDelay;
+            if (options.hasOwnProperty("focusDelay")) {
+                conf.focusDelay = options.focusDelay;
             }
         }
 
-        Vue.directive('title', {
-            bind: function (el, binding) {
-                takeOver(el, binding);
-                el.addEventListener("mouseout", setBlur);
-                el.addEventListener("click", setBlur);
-
-                document.body.onscroll = function () {
-                    setBlur();
-                };
+        Vue.directive("title", {
+            bind: el => {
+                utils.addEvents(el);
             },
-            unbind: function() {
-                setBlur();
+            unbind: el => {
+                utils.blur();
+                utils.removeEvents(el);
             }
         });
     }
