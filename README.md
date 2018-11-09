@@ -1,6 +1,10 @@
 # vuejs-title
 
-Title plugin for `Vue`.
+[![Travis Build](https://img.shields.io/travis/fattihkoca/vuejs-title.svg)](https://travis-ci.org/fattihkoca/vuejs-title)
+[![Version](https://img.shields.io/npm/v/vuejs-title.svg)](https://www.npmjs.com/package/vuejs-title)
+[![Downloads](https://img.shields.io/npm/dm/vuejs-title.svg)](https://www.npmjs.com/package/vuejs-title)
+
+Title buble directive for `VueJS`.
 
 ## Setup
 
