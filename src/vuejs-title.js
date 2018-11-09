@@ -116,6 +116,8 @@ const VueTitle = {
             },
             exec(el, binding) {
                 utils.blur();
+
+                binding.value = binding.hasOwnProperty('value') ? binding.value : null;
                 binding.value = utils.catchValue(el, binding.value);
 
                 if(binding.value) {
