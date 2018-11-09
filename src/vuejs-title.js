@@ -125,7 +125,10 @@ const VueTitle = {
                 }
             },
             addEvents(el) {
-                el.addEventListener("mouseover", utils.exec);
+                el.addEventListener("mouseover", (el, binding) => {
+                    utils.exec(el, binding);
+                });
+
                 el.addEventListener("mouseout", utils.blur);
                 el.addEventListener("click", utils.blur);
                 document.body.addEventListener("scroll", utils.blur);
