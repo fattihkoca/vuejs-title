@@ -117,15 +117,14 @@ const VueTitle = {
             exec(el, binding) {
                 utils.blur();
 
-                binding.value = binding.hasOwnProperty('value') ? binding.value : null;
                 binding.value = utils.catchValue(el, binding.value);
 
                 if(binding.value) {
                     utils.create(el, binding.value);
                 }
             },
-            addEvents(el) {
-                el.addEventListener("mouseover", (el, binding) => {
+            addEvents(el, binding) {
+                el.addEventListener("mouseover", () => {
                     utils.exec(el, binding);
                 });
 
@@ -133,7 +132,7 @@ const VueTitle = {
                 el.addEventListener("click", utils.blur);
                 document.body.addEventListener("scroll", utils.blur);
             },
-            removeEvents(el) {
+            removeEvents(el, binding) {
                 el.removeEventListener("mouseover", utils.exec);
                 el.removeEventListener("mouseout", utils.blur);
                 el.removeEventListener("click", utils.blur);
@@ -156,12 +155,12 @@ const VueTitle = {
         }
 
         Vue.directive("title", {
-            bind: el => {
-                utils.addEvents(el);
+            bind: (el, binding) => {
+                utils.addEvents(el, binding);
             },
-            unbind: el => {
+            unbind: (el, binding) => {
                 utils.blur();
-                utils.removeEvents(el);
+                utils.removeEvents(el, binding);
             }
         });
     }
