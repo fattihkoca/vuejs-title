@@ -1,6 +1,6 @@
 {
   "name": "vuejs-title",
-  "version": "0.0.9",
+  "version": "0.0.91",
   "description": "Title buble directive for Vue",
   "keywords": [
     "vue",
@@ -23,9 +23,9 @@
   },
   "scripts": {
     "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
-    "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/vue-test.umd.js",
-    "build:es": "rollup --config build/rollup.config.js --format es --file dist/vue-test.esm.js",
-    "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/vue-test.min.js",
+    "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/vuejs-title.umd.js",
+    "build:es": "rollup --config build/rollup.config.js --format es --file dist/vuejs-title.esm.js",
+    "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/vuejs-title.min.js",
     "lint": "jshint *.js",
     "test": "mocha test/test.js"
   },
