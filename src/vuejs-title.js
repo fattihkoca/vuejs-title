@@ -31,7 +31,7 @@ const VueTitle = {
         const utils = {
             blur() {
                 let el = document.body.querySelector("." + conf.cssClass);
-                
+
                 if (el != null && el instanceof Element) {
                     el.style.opacity = "0";
                 }
@@ -84,6 +84,8 @@ const VueTitle = {
                 item.style.opacity = "1";
             },
             create(el, value) {
+                utils.blur();
+
                 let item = document.createElement("div"),
                     itemContents = document.createElement("div"),
                     itemArrow = document.createElement("div");
@@ -129,17 +131,16 @@ const VueTitle = {
                 });
 
                 el.addEventListener("mouseout", utils.blur);
-                el.addEventListener("click", utils.blur);
-                document.body.addEventListener("scroll", utils.blur);
+                window.addEventListener("click", utils.blur);
+                window.addEventListener("scroll", utils.blur);
             },
             removeEvents(el, binding) {
                 el.removeEventListener("mouseover", utils.exec);
-                el.removeEventListener("mouseout", utils.blur);
-                el.removeEventListener("click", utils.blur);
-                document.body.removeEventListener("scroll", utils.blur);
+                window.removeEventListener("click", utils.blur);
+                window.removeEventListener("scroll", utils.blur);
             },
         };
-        
+
         if (typeof options === "object") {
             if (options.hasOwnProperty("cssClass")) {
                 conf.cssClass = options.cssClass;
@@ -160,7 +161,9 @@ const VueTitle = {
             },
             unbind: (el, binding) => {
                 utils.blur();
-                utils.removeEvents(el, binding);
+                setTimeout(() => {
+                    utils.removeEvents(el, binding);
+                }, 10);
             }
         });
     }
