@@ -163,7 +163,7 @@ const VueTitle = {
                 utils.blur();
                 setTimeout(() => {
                     utils.removeEvents(el, binding);
-                }, 10);
+                }, (conf.blurDelay + 1));
             }
         });
     }
