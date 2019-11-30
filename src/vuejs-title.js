@@ -12,8 +12,8 @@ const VueTitle = {
         });
 
         // To ensure browser compatibility
-        if (!Element.prototype.hasOwnProperty('offset')) {
-            Element.prototype.offset = function () {
+        if (!HTMLElement.prototype.hasOwnProperty('offset')) {
+            HTMLElement.prototype.offset = function () {
                 const rect = this.getBoundingClientRect(),
                     scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
                     scrollTop = window.pageYOffset || document.documentElement.scrollTop;
