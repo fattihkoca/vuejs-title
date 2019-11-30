@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.title</title>
+
+    <script src="app.js"></script>
+</head>
+<body>
+<div id="app">
+    <span title="Title text 1" v-title>Some text </span>
+    <span v-title="'Title text 2'">Some text 2 </span>
+    <span :title="title3" v-title>Some text 3 </span>
+    <span v-title="title4">Some text 4</span>
+</div>
+</body>
+</html>

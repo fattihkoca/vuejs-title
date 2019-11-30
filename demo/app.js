@@ -12,7 +12,10 @@ Vue.use(title);
 
 var vm = new Vue({
     el: '#app',
-    components: {
-        vueTitleExample: require('vueTitleExample.vue').default
-    }
+    data() {
+        return {
+            title3: 'Title 3',
+            title4: 'Title 4',
+        };
+    },
 });
