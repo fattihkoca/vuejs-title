@@ -267,20 +267,22 @@ const VueTitle = {
             }
         }
 
-        if (!i.supportsTouch) {
-            Vue.directive(i.title, {
-                bind: (el, binding) => {
+        Vue.directive(i.title, {
+            bind: (el, binding) => {
+                if (!i.supportsTouch) {
                     fn.addEvents(el, binding);
-                },
-                unbind: (el, binding) => {
-                    fn.blur();
-                    fn.removeEvents(el);
-                },
-                inserted: () => {
+                }
+            },
+            unbind: (el, binding) => {
+                fn.blur();
+                fn.removeEvents(el);
+            },
+            inserted: () => {
+                if (!i.supportsTouch) {
                     fn.initStyles();
                 }
-            });
-        }
+            }
+        });
     }
 };
 
