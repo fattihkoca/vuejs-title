@@ -63,17 +63,17 @@ You can change the configurations in the following table according to the figure
 
 | Configuration                     | Type             | Default                  | Description                                       |
 | ----------------------------------| ---------------- | ------------------------ | ------------------------------------------------- |
+| bgColor                           | String           | rgba(0,0,0,0.7)          | Color background of the title bubble              |
 | cssClass                          | String           | v-title                  | The css class name of the title bubble.           |
+| fontSize                          | String           | 14px                     | Font size of the title bubble                     |
+| maxHeight                         | String           | 50px                     | Max height of the title balloon                   |
+| maxWidth                          | String           | 250px                    | Max width of the title balloon                    |
 | minPositionGap                    | Integer          | 20                       | Distance of the title balloon from window edges   |
 | padding                           | String           | 5px 10px                 | Inner space of the title balloon                  |
-| maxWidth                          | String           | 250px                    | Max width of the title balloon                    |
-| maxHeight                         | String           | 50px                     | Max height of the title balloon                   |
 | round                             | String           | 4px                      | Rolling radius of the corners of the title bubble |
-| bgColor                           | String           | rgba(0,0,0,0.7)          | Color background of the title bubble              |
 | textColor                         | String           | #FFF                     | Font color of the title bubble                    |
-| fontSize                          | String           | 14px                     | Font size of the title bubble                     |
-| transitionDuration                | Integer          | 300                      | Transition duration of the title bubble           |
 | transitionDelay                   | Integer          | 200                      | Transition delay of the title bubble              |
+| transitionDuration                | Integer          | 300                      | Transition duration of the title bubble           |
 
 # License
 [MIT](LICENSE)
