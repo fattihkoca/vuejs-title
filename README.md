@@ -45,15 +45,15 @@ You can convert as you like with the settings. To do this, we will make a change
 ### Example Usage
 ```js
 // ES6
-import ajax from 'vuejs-title'
-Vue.use(ajax, {
+import vTitle from 'vuejs-title'
+Vue.use(vTitle, {
     cssClass: "my-title-bubble",
     fontSize: "20px"
 })
 
 // ES5
-var ajax = require('vuejs-title')
-Vue.use(ajax, {
+var vTitle = require('vuejs-title')
+Vue.use(vTitle, {
     cssClass: "my-title-bubble",
     fontSize: "20px"
 })
