@@ -285,5 +285,4 @@ const VueTitle = {
         });
     }
 };
-
 module.exports = VueTitle;
