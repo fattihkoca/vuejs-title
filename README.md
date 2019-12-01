@@ -19,12 +19,12 @@ npm install vuejs-title --save
 # Usage
 ```js
 // ES6
-import ajax from 'vuejs-title'
-Vue.use(ajax)
+import vTitle from 'vuejs-title'
+Vue.use(vTitle)
 
 // ES5
-var ajax = require('vuejs-title')
-Vue.use(ajax)
+var vTitle = require('vuejs-title')
+Vue.use(vTitle)
 ```
 
 ### Example
@@ -46,11 +46,17 @@ You can convert as you like with the settings. To do this, we will make a change
 ```js
 // ES6
 import ajax from 'vuejs-title'
-Vue.use(ajax, {cssClass: "my-title-bubble"})
+Vue.use(ajax, {
+    cssClass: "my-title-bubble",
+    fontSize: "20px"
+})
 
 // ES5
 var ajax = require('vuejs-title')
-Vue.use(ajax, {cssClass: "my-title-bubble"})
+Vue.use(ajax, {
+    cssClass: "my-title-bubble",
+    fontSize: "20px"
+})
 ```
 
 You can change the configurations in the following table according to the figure above:
