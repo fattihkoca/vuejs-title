@@ -133,7 +133,7 @@ const VueTitle = {
                 },
                 // Remove the title bubble element
                 destroy(e, target, bubble) {
-                    let mouseout = e.type === i.mouseout,
+                    let mouseout = e && e.type === i.mouseout,
                         origin = bubble.vTitleOrigin;
 
                     if (!fn.nodeExists(bubble) || (mouseout && target !== origin)) {
