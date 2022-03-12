@@ -1,6 +1,6 @@
 {
   "name": "vuejs-title",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Title bubble directive for Vue",
   "keywords": [
     "vue",
@@ -16,7 +16,7 @@
     "src",
     "dist"
   ],
-  "author": "Fatih Koca <fattih@fattih.com>",
+  "author": "Fatih Koca <fatih@koca.app>",
   "license": "MIT",
   "directories": {
     "example": "test"
