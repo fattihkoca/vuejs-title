@@ -252,7 +252,7 @@ const VueTitle = {
                         + classSlcParent + i.contents + "{padding:" + conf.padding + ";max-width:" + conf.maxWidth + ";max-height:" + conf.maxHeight + ";color:" + conf.textColor + ";font-size:" + conf.fontSize + ";overflow:hidden;word-break:break-all;}"
                         + classSlcParent + i.arrow + "{width:0;height:0;border-left:" + i.arrowBorder + " " + i.transparent + ";border-right:" + i.arrowBorder + " " + i.transparent + "}"
                         + classSlc + "[position=bottom] " + classSlc + i.arrow + "{border-bottom:" + i.arrowBorder + " " + conf.bgColor + ";margin-bottom:" + i.arrowMargin + "}"
-                        + classSlc + "[position=top] " + classSlc + i.arrow + "{border-top:" + i.arrowBorder + " " + conf.bgColor + ";margin-top:" + i.arrowMargin + "}";
+                        + classSlc + "[position=top] " + classSlc + i.arrow + "{border-top:" + i.arrowBorder + " " + conf.bgColor + ";margin-top:" + i.arrowMargin + ";margin-bottom:0}";
 
                     head.appendChild(style);
                 },
